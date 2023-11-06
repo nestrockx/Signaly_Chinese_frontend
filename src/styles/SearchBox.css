@@ -46,3 +46,7 @@
   border: none;
   background-color: #fff0;
 }
+
+.delete_btn {
+  cursor: pointer;
+}

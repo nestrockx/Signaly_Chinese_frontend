@@ -18,7 +18,11 @@ const SearchBox = ({ searchQuery, setSearchQuery, handleSubmit }: Props) => {
         placeholder="汉字 pinyin polski"
         className="search_box"
       />
-      <button className="delete_btn">
+      <button
+        className="delete_btn"
+        type="button"
+        onClick={() => setSearchQuery("")}
+      >
         <AiOutlineClose size={40} />
       </button>
       <button className="submit_btn" type="submit">

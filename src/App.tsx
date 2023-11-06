@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import SearchBox from "./components/SearchBox";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { Dictionary } from "./models/Dictionary";
 import SearchResultsList from "./components/SearchResultsList";
 
@@ -25,11 +25,16 @@ const App: React.FC = () => {
         .then((response) => {
           setSearchResults(response.data);
         })
-        .catch((ex) => {
-          const error =
-            ex.response.status === 404
-              ? "Resource Not Found"
-              : "An unexpected error has occurred";
+        .catch((ex: Error | AxiosError) => {
+          if (axios.isAxiosError(ex)) {
+            console.log(
+              ex.response?.status === 404
+                ? "Resource Not Found"
+                : "An unexpected error has occurred"
+            );
+          } else {
+            console.log(ex.message);
+          }
         });
     } else {
     }
